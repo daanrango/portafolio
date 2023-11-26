@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import sr from "../Scrollreveal";
 
 function Showcase({ image, id }) {
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    const config = {
+      origin: "left",
+      duration: 1000,
+      distance: "500px",
+      scale: 1,
+      easing: "ease",
+    };
+
+    sr.reveal(boxRef.current, config);
+  }, []);
+
   return (
     <section
       id={"" + id}
-      className="w-full h-max md:h-80 bg-back-showcase bg-no-repeat	bg-center bg-cover mt-4 items-center block md:flex justify-center pt-10 md:py-64"
+      className="shocase w-full h-max md:h-80 bg-back-showcase bg-no-repeat	bg-center bg-cover mt-4 items-center block md:flex justify-center pt-10 md:py-64"
+      ref={boxRef}
     >
       <div>
         <img
@@ -25,7 +41,7 @@ function Showcase({ image, id }) {
           href="/"
           className="cursor-pointer inline-block font-bold px-8 py-3 bg-gray-600 text-white text-sm mx-0 my-3 border border-solid border-white hover:opacity-70"
         >
-          <i class="fa-solid fa-check"></i> Go
+          <i className="fa-solid fa-check"></i> Go
         </a>
       </div>
     </section>

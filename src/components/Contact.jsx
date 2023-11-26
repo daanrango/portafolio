@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import sr from "../Scrollreveal";
 
 const socialIcons = [
   {
@@ -34,9 +35,24 @@ const socialIcons = [
 ];
 
 function Contact() {
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    const config = {
+      origin: "right",
+      duration: 1000,
+      distance: "500px",
+      scale: 1,
+      delay: 150,
+      easing: "ease",
+      reset: true,
+    };
+
+    sr.reveal(boxRef.current, config);
+  }, []);
   return (
-    <section id="redes-sociales" className="p-8">
-      <p className="text-center text-3xl mb-5">Mis redes Sociales</p>
+    <section id="contact" className="contact p-8" ref={boxRef}>
+      <p className="text-center text-3xl mb-5">Social networks</p>
       <div className="flex flex-wrap justify-center">
         {socialIcons.map((item) => (
           <a
